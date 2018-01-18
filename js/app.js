@@ -46,8 +46,6 @@ blankify(splitWord);
 console.log(blankedWord);
 
 
-
-
 // User interaction
 var guessedLetters = [];
 
@@ -59,14 +57,14 @@ document.onkeyup = function(event) {
     guessedLetters.sort();
     console.log("letters that have been guessed " +guessedLetters);
   }
-  if (splitWord.indexOf(event.key) > -1){
-    blankedWord[splitWord.indexOf(event.key)] = event.key;
-    console.log("corrrect letter is "+ event.key);
-    console.log(blankedWord);
- }
+  for (var i = 0; i < blankedWord.length; i++) {
+    if (splitWord[i] === (event.key)){
+      blankedWord[splitWord.indexOf(event.key, [i])] = event.key;
+      console.log("corrrect letter is "+ event.key);
+      console.log(blankedWord);
+    }
+  }
 };
-
-
 
 /*Hints
 Normalize with .trim() and .toLowerCase()
