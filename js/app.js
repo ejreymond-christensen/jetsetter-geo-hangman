@@ -20,15 +20,17 @@ var wordPool = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argen
   "Zambia", "Zimbabwe"];
 
 // Ramndomize the model, so each game is unique. Needs to run only on initial load. function (from W3schools) that randomizes the wordPool array, so each game will be unique.
-// wordPool.sort(function(a, b){
-//   return 0.5 - Math.random();
-// });
+ wordPool.sort(function(a, b){
+   return 0.5 - Math.random();
+ });
 
 console.log(wordPool);
 
+var level = 0;
+
 // creation of the word to guess.
 
-var splitWord = wordPool[1].toLowerCase("").trim().split("");
+var splitWord = wordPool[level].toLowerCase("").trim().split("");
 
 
 console.log(splitWord);
@@ -45,18 +47,30 @@ var blankify = function (splitWord){
 blankify(splitWord);
 console.log(blankedWord);
 
+var playerLives = 5;
 
-// User interaction
+
+/*
+***User interaction section***
+*/
+
 var guessedLetters = [];
 
 // function to cature a key press
 document.onkeyup = function(event) {
+  //this statement will check if the letter is already guessed and in the word, if both are no it subtracts a life.
+  if ((splitWord.indexOf(event.key) === -1) && (guessedLetters.indexOf(event.key) === -1)){
+    playerLives = playerLives - 1;
+    //add an end game function
+  }
+  //this statement checks if the letter has already been pushed, if so, nothing happens, if not it pushes it to the already guessed array.
   if (guessedLetters.indexOf(event.key) === -1){
     //console.log(event.key);
     guessedLetters.push(event.key);
     guessedLetters.sort();
     console.log("letters that have been guessed " +guessedLetters);
   }
+  //this statement loops through the blanked word and replaces a letter if the player guesses right.
   for (var i = 0; i < blankedWord.length; i++) {
     if (splitWord[i] === (event.key)){
       blankedWord[splitWord.indexOf(event.key, [i])] = event.key;
@@ -64,12 +78,17 @@ document.onkeyup = function(event) {
       console.log(blankedWord);
     }
   }
+  populate();
 };
 
-/*Hints
-Normalize with .trim() and .toLowerCase()
-if it returns -1 then that means it was not in the array, thus it is a life agianst player
-*/
+//this function populates the HTML on changes, called on every key stroke
+var populate = function(){
+  document.getElementById('guesses').innerHTML = guessedLetters.join("  ");
+  document.getElementById("coucou").innerHTML = blankedWord.join(" ");
+  document.getElementById("lives").textContent = "Lives: " + playerLives;
+};
+populate();
+
 
 // Game function
 
