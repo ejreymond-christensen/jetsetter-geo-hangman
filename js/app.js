@@ -20,9 +20,16 @@ var wordPool = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argen
   "Zambia", "Zimbabwe"];
 
 // Ramndomize the model, so each game is unique. Needs to run only on initial load. function (from W3schools) that randomizes the wordPool array, so each game will be unique.
-wordPool.sort(function(a, b){
-   return 0.5 - Math.random();
- });
+var scramble = function(){
+  wordPool = wordPool.sort(function(a, b){
+     return 0.5 - Math.random();
+   });
+};
+scramble();
+
+// wordPool.sort(function(a, b){
+//    return 0.5 - Math.random();
+//  });
 
 console.log(wordPool);
 
@@ -34,7 +41,6 @@ var splitWord="";
 
 var randomWordPicker = function(){
   splitWord =wordPool[level].toLowerCase("").trim().split("");
-  level++;
 };
 randomWordPicker();
 console.log(splitWord);
@@ -87,6 +93,10 @@ document.onkeyup = function(event) {
     reset();
   }
   populate();
+  if((blankedWord.join("")) === (splitWord.join(""))){
+    console.log("you winner");
+    levelUp();
+  }
 };
 
 //this function populates the HTML on changes, called on every key stroke
@@ -98,33 +108,28 @@ var populate = function(){
 populate();
 
 
-var reset = function(){
-  wordPool = wordPool.sort(function(a, b){
-     return 0.5 - Math.random();
-   });
+var levelUp = function(){
+  level++;
+  playerLives = 5;
+  splitWord="";
+  blankedWord = [];
+  guessedLetters = [];
 
-   level = 0;
-   playerLives = 5;
-   splitWord="";
-   blankedWord = [];
-   guessedLetters = [];
-
-   randomWordPicker();
-   blankify(splitWord);
-   populate();
+  randomWordPicker();
+  blankify(splitWord);
+  populate();
 
    console.log(wordPool);
    console.log(splitWord);
    console.log(blankedWord);
-
 };
 
-// Game function
+var reset = function(){
+  level = 0;
+  scramble();
+  levelUp();
 
-// Ramndomize the model, so each game is unique. Needs to run only on initial load.
-
-// function for each set, pulls the next array object.
-
-// run word through a function, Normalize with .trim() and .toLowerCase() and then split the word.
-
-//
+   console.log(wordPool);
+   console.log(splitWord);
+   console.log(blankedWord);
+};
