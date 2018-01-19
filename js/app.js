@@ -19,6 +19,8 @@ var wordPool = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argen
   "Tuvalu", "Uganda", "Ukraine","Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen",
   "Zambia", "Zimbabwe"];
 
+var letterPool = ["a", "b", "c", "d", "e","f","g","h","i","j","k","l","m","n","o","p","q","r",
+  "s","t","u","v","w","x","y","z"];
 // Ramndomize the model, so each game is unique. Needs to run only on initial load. function (from W3schools) that randomizes the wordPool array, so each game will be unique.
 var scramble = function(){
   wordPool = wordPool.sort(function(a, b){
@@ -66,39 +68,54 @@ var playerLives = 5;
 
 var guessedLetters = [];
 
+document.onkeyup = function(event) {
+  if ((letterPool.indexOf(event.key) === -1)){
+    console.log("bad choice");
+  }
+  else{
+    gameEngine();
+  }
+};
+
+
 // function to cature a key press
 document.onkeyup = function(event) {
-  //this statement will check if the letter is already guessed and in the word, if both are no it subtracts a life.
-  if ((splitWord.indexOf(event.key) === -1) && (guessedLetters.indexOf(event.key) === -1)){
-    playerLives = playerLives - 1;
-  }
 
-  //this statement checks if the letter has already been pushed, if so, nothing happens, if not it pushes it to the already guessed array.
-  if (guessedLetters.indexOf(event.key) === -1){
-    //console.log(event.key);
-    guessedLetters.push(event.key);
-    guessedLetters.sort();
-    console.log("letters that have been guessed " +guessedLetters);
-  }
+  if ((letterPool.indexOf(event.key) > -1)){
 
-  //this statement loops through the blanked word and replaces a letter if the player guesses right.
-  for (var i = 0; i < blankedWord.length; i++) {
-    if (splitWord[i] === (event.key)){
-      blankedWord[splitWord.indexOf(event.key, [i])] = event.key;
-      console.log("corrrect letter is "+ event.key);
-      console.log(blankedWord);
+    //this statement will check if the letter is already guessed and in the word, if both are no it subtracts a life.
+    if ((splitWord.indexOf(event.key) === -1) && (guessedLetters.indexOf(event.key) === -1)){
+      playerLives = playerLives - 1;
     }
-  }
-  if(playerLives === 0){
-    //reset();
-    $("#loseModal").modal("show");
-  }
-  populate();
-  if((blankedWord.join("")) === (splitWord.join(""))){
-    console.log("you winner");
-    $("#winModal").modal("show");
-    winText();
-    levelUp();
+
+    //this statement checks if the letter has already been pushed, if so, nothing happens, if not it pushes it to the already guessed array.
+    if (guessedLetters.indexOf(event.key) === -1){
+      //console.log(event.key);
+      guessedLetters.push(event.key);
+      guessedLetters.sort();
+      console.log("letters that have been guessed " +guessedLetters);
+    }
+
+    //this statement loops through the blanked word and replaces a letter if the player guesses right.
+    for (var i = 0; i < blankedWord.length; i++) {
+      if (splitWord[i] === (event.key)){
+        blankedWord[splitWord.indexOf(event.key, [i])] = event.key;
+        console.log("corrrect letter is "+ event.key);
+        console.log(blankedWord);
+      }
+    }
+    if(playerLives === 0){
+      //reset();
+      $("#loseModal").modal("show");
+      modalText("factsLose","wikiLose");
+    }
+    populate();
+    if((blankedWord.join("")) === (splitWord.join(""))){
+      console.log("you winner");
+      $("#winModal").modal("show");
+      modalText("facts","wiki");
+      levelUp();
+    }
   }
 };
 
@@ -111,11 +128,10 @@ var populate = function(){
 };
 populate();
 
-var winText = function(){
-  document.getElementById('facts').innerHTML = "To learn more interesting facts about "+ blankedWord.join("") + "click here!";
-  document.getElementById('wiki').href = "https://en.wikipedia.org/wiki/"+blankedWord.join("");
+var modalText = function(x,y){
+  document.getElementById(x).innerHTML = "Click the Wikipedia button to learn more interesting facts about "+ splitWord.join("").toUpperCase() + "!";
+  document.getElementById(y).href = "https://en.wikipedia.org/wiki/"+splitWord.join("");
 };
-
 
 var levelUp = function(){
   level++;
