@@ -90,11 +90,14 @@ document.onkeyup = function(event) {
     }
   }
   if(playerLives === 0){
-    reset();
+    //reset();
+    $("#loseModal").modal("show");
   }
   populate();
   if((blankedWord.join("")) === (splitWord.join(""))){
     console.log("you winner");
+    $("#winModal").modal("show");
+    winText();
     levelUp();
   }
 };
@@ -102,10 +105,16 @@ document.onkeyup = function(event) {
 //this function populates the HTML on changes, called on every key stroke
 var populate = function(){
   document.getElementById('guesses').innerHTML = guessedLetters.join("  ");
-  document.getElementById("coucou").innerHTML = blankedWord.join(" ");
+  document.getElementById("level").textContent = "Level: " + level;
+  document.getElementById("word").innerHTML = blankedWord.join(" ");
   document.getElementById("lives").textContent = "Lives: " + playerLives;
 };
 populate();
+
+var winText = function(){
+  document.getElementById('facts').innerHTML = "To learn more interesting facts about "+ blankedWord.join("") + "click here!";
+  document.getElementById('wiki').href = "https://en.wikipedia.org/wiki/"+blankedWord.join("");
+};
 
 
 var levelUp = function(){

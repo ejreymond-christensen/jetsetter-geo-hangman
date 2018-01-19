@@ -4,17 +4,84 @@
     <meta charset="utf-8">
     <title>Hangman</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <div class="">
-      <h2><span id="coucou"></span></h2>
-      <br>
-      <div class="">
-        <h5>Letters already used</h5>
-        <p><span id="guesses"></span></p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1">
+          &nbsp;
+        </div>
+        <div class="col-md-10">
+          <div class="styleCard card">
+            <div class="card-header text-center">
+              <h1 class="card-title">Geography Hangman</h1>
+            </div>
+            <div class="card-body">
+              <div class="row clearfix">
+                <div class="col-md-6">
+                  <h6 class="card-subtitle mb-2 text-muted float-left"><span id="lives">Lives: 5</span></h6>
+                </div>
+                <div class="col-md-6">
+                  <h6 class="card-subtitle mb-2 text-muted levelFloat"><span id="level">Level: 0</span></h6>
+                </div>
+              </div>
+              <div class="row text-center wordBox2">
+                <div class="col-md-12 wordBox">
+                  <div class="spacer">&nbsp;</div>
+                  <h2><span id="word"></span></h2>
+                  <hr>
+                </div>
+              </div>
+              <div class="row text-center">
+                <div class="col-md-12">
+                  <h6 class="card-subtitle mb-2 text-muted"> Guessed Letters</h6>
+                  <hr>
+                  <h4 class= "guessBox"><span id="guesses"></span></h4>
+                </div>
+              </div>
+              <button type="button" onclick="reset()" class="btn btn-info">reset</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1">
+          &nbsp;
+        </div>
       </div>
-      <hr>
-      <h5><span id="lives"></span></h5>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="winModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Ding! Level Up</h5>
+          </div>
+          <div class="modal-body">
+            <p id="facts"></p>
+            <a id="wiki" href="" target="_blank"><button type="button" class="btn btn-info">Wikipedia</button></a>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Next Round</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="loseModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Sorry you lose!</h5>
+          </div>
+          <div class="modal-body">
+            Better luck next time!
+            <button type="button" class="btn btn-info float-right" data-dismiss="modal" onclick="reset()">Reset</button>
+          </div>
+        </div>
+      </div>
     </div>
     <script type="text/javascript" src="js/app.js"></script>
   </body>

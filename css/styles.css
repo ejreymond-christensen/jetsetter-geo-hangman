@@ -1,0 +1,29 @@
+body{
+  background-image: url(../map.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.guessBox{
+  min-height: 50px;
+}
+.wordBox{
+  min-height: 200px;
+}
+.spacer{
+  height: 100px;
+}
+
+.styleCard{
+  margin-top: 15%;
+  margin-bottom: auto;
+}
+.levelFloat{
+  float: right;
+}
+
+@media only screen and (max-width: 767px) {
+.levelFloat{
+  float: none;
+}
+}
