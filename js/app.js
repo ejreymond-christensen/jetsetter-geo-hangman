@@ -20,7 +20,7 @@ var wordPool = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argen
   "Zambia", "Zimbabwe"];
 
 // Ramndomize the model, so each game is unique. Needs to run only on initial load. function (from W3schools) that randomizes the wordPool array, so each game will be unique.
- wordPool.sort(function(a, b){
+wordPool.sort(function(a, b){
    return 0.5 - Math.random();
  });
 
@@ -30,9 +30,13 @@ var level = 0;
 
 // creation of the word to guess.
 
-var splitWord = wordPool[level].toLowerCase("").trim().split("");
+var splitWord="";
 
-
+var randomWordPicker = function(){
+  splitWord =wordPool[level].toLowerCase("").trim().split("");
+  level++;
+};
+randomWordPicker();
 console.log(splitWord);
 
 // Creation of the blanked/Hidden worded
@@ -61,8 +65,8 @@ document.onkeyup = function(event) {
   //this statement will check if the letter is already guessed and in the word, if both are no it subtracts a life.
   if ((splitWord.indexOf(event.key) === -1) && (guessedLetters.indexOf(event.key) === -1)){
     playerLives = playerLives - 1;
-    //add an end game function
   }
+
   //this statement checks if the letter has already been pushed, if so, nothing happens, if not it pushes it to the already guessed array.
   if (guessedLetters.indexOf(event.key) === -1){
     //console.log(event.key);
@@ -70,6 +74,7 @@ document.onkeyup = function(event) {
     guessedLetters.sort();
     console.log("letters that have been guessed " +guessedLetters);
   }
+
   //this statement loops through the blanked word and replaces a letter if the player guesses right.
   for (var i = 0; i < blankedWord.length; i++) {
     if (splitWord[i] === (event.key)){
@@ -77,6 +82,9 @@ document.onkeyup = function(event) {
       console.log("corrrect letter is "+ event.key);
       console.log(blankedWord);
     }
+  }
+  if(playerLives === 0){
+    reset();
   }
   populate();
 };
@@ -89,6 +97,27 @@ var populate = function(){
 };
 populate();
 
+
+var reset = function(){
+  wordPool = wordPool.sort(function(a, b){
+     return 0.5 - Math.random();
+   });
+
+   level = 0;
+   playerLives = 5;
+   splitWord="";
+   blankedWord = [];
+   guessedLetters = [];
+
+   randomWordPicker();
+   blankify(splitWord);
+   populate();
+
+   console.log(wordPool);
+   console.log(splitWord);
+   console.log(blankedWord);
+
+};
 
 // Game function
 
