@@ -57,7 +57,7 @@
       </div>
     </div>
     <!-- Win Modal -->
-    <div class="modal fade" id="winModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="winModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -87,13 +87,13 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-dismiss="modal">Next Round</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal" onclick="levelUp()">Next Round</button>
           </div>
         </div>
       </div>
     </div>
     <!-- Lose Modal -->
-    <div class="modal fade" id="loseModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="loseModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">

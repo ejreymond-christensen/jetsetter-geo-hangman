@@ -87,7 +87,7 @@ document.onkeyup = function(event) {
       //console.log("you winner");
       $("#winModal").modal("show");
       modalText("flagImg","mName", "mRegion", "mCapital", "mPop", "mfacts", "wiki", "mArea");
-      levelUp();
+      //levelUp();
     }
   }
 };
