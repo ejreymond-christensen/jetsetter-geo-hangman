@@ -6,9 +6,9 @@ var scramble = function(){
 };
 scramble();
 
-// wordPool.sort(function(a, b){
-//    return 0.5 - Math.random();
-//  });
+wordPool.sort(function(a, b){
+   return 0.5 - Math.random();
+ });
 
 console.log(wordPool);
 
@@ -30,7 +30,12 @@ var blankedWord = [];
 
 var blankify = function (splitWord){
   for (var i=0; i < splitWord.length; i++){
-    blankedWord.push(" _ ");
+    if ((letterPool.indexOf(splitWord[i]) > -1)){
+      blankedWord.push(" _ ");
+    }
+    else{
+      blankedWord.push(splitWord[i]);
+    }
   }
 };
 blankify(splitWord);
@@ -84,13 +89,13 @@ document.onkeyup = function(event) {
     if(playerLives === 0){
       //reset();
       $("#loseModal").modal("show");
-      modalText("lFlagImg","lmName", "lmRegion", "lmCapital", "lmPop", "lmFacts", "lWiki");
+      modalText("lFlagImg","lmName", "lmRegion", "lmCapital", "lmPop", "lmFacts", "lWiki", "lmArea");
     }
     populate();
     if((blankedWord.join("")) === (splitWord.join(""))){
       console.log("you winner");
       $("#winModal").modal("show");
-      modalText("flagImg","mName", "mRegion", "mCapital", "mPop", "mfacts", "wiki");
+      modalText("flagImg","mName", "mRegion", "mCapital", "mPop", "mfacts", "wiki", "mArea");
       levelUp();
     }
   }
@@ -100,12 +105,13 @@ document.onkeyup = function(event) {
 var populate = function(){
   document.getElementById('guesses').innerHTML = guessedLetters.join("  ");
   document.getElementById("level").textContent = "Level: " + level;
-  document.getElementById("word").innerHTML = blankedWord.join(" ");
+  document.getElementById("word").innerHTML = blankedWord.join("&nbsp");
   document.getElementById("lives").textContent = "Lives: " + playerLives;
+  document.getElementById("hint").textContent = "Hint: It is in the region of " + wordPool[level].region;
 };
 populate();
 
-var modalText = function(a,b,c,d,e,f,g){
+var modalText = function(a,b,c,d,e,f,g,h){
   document.getElementById(a).src = "img/flags/"+wordPool[level].code + ".svg";
   document.getElementById(b).innerHTML = splitWord.join("").toUpperCase();
   document.getElementById(c).textContent = "Region: " + wordPool[level].region;
@@ -113,6 +119,7 @@ var modalText = function(a,b,c,d,e,f,g){
   document.getElementById(e).textContent = "Population: " + wordPool[level].popu;
   document.getElementById(f).innerHTML = "Click the Wikipedia button to learn more interesting facts about "+ splitWord.join("").toUpperCase() + "!";
   document.getElementById(g).href = "https://en.wikipedia.org/wiki/"+splitWord.join("");
+  document.getElementById(h).textContent = "Area: " + wordPool[level].area +" km²";
 };
 
 var levelUp = function(){
