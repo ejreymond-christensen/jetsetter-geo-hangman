@@ -30,6 +30,9 @@ h1{
 .styleCard{
   margin-top: 7%;
   margin-bottom: auto;
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(156,151,156,0.71);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(156,151,156,0.71);
+  box-shadow: 2px 2px 5px 0px rgba(156,151,156,0.71);
 }
 .levelFloat{
   float: right;
