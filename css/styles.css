@@ -21,6 +21,14 @@ body{
 .levelFloat{
   float: right;
 }
+#flagImg{
+  width: 150px;
+  height: auto;
+}
+#lFlagImg{
+  width: 150px;
+  height: auto;
+}
 
 @media only screen and (max-width: 767px) {
 .levelFloat{

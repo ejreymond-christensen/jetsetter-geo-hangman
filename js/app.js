@@ -1,26 +1,3 @@
-// Model - Word bank for the hangman game. All one worded countries.
-
-var wordPool = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia",
-  "Austria", "Azerbaijan", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium ", "Belize", "Benin", "Bhutan",
-  "Bolivia", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burundi", "Cambodia", "Cameroon", "Canada", "Chad",
-  "Chile", "China", "Colombia", "Comoros", "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark", "Djibouti",
-  "Dominica", "Ecuador", "Egypt", "Eritrea", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "Gabon",
-  "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guyana", "Haiti",
-  "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy",
-  "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia",
-  "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia",
-  "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico",
-  "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar",
-  "Namibia", "Nauru", "Nepal", "Netherlands", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman",
-  "Pakistan", "Palau", "Palestine", "Panama", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
-  "Qatar", "Romania", "Russia", "Rwanda", "Samoa", "Senegal", "Serbia", "Seychelles", "Singapore",
-  "Slovakia", "Slovenia", "Somalia", "Spain", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland",
-  "Syria", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Tunisia", "Turkey", "Turkmenistan",
-  "Tuvalu", "Uganda", "Ukraine","Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen",
-  "Zambia", "Zimbabwe"];
-
-var letterPool = ["a", "b", "c", "d", "e","f","g","h","i","j","k","l","m","n","o","p","q","r",
-  "s","t","u","v","w","x","y","z"];
 // Ramndomize the model, so each game is unique. Needs to run only on initial load. function (from W3schools) that randomizes the wordPool array, so each game will be unique.
 var scramble = function(){
   wordPool = wordPool.sort(function(a, b){
@@ -42,7 +19,7 @@ var level = 0;
 var splitWord="";
 
 var randomWordPicker = function(){
-  splitWord =wordPool[level].toLowerCase("").trim().split("");
+  splitWord =wordPool[level].name.toLowerCase("").trim().split("");
 };
 randomWordPicker();
 console.log(splitWord);
@@ -107,13 +84,13 @@ document.onkeyup = function(event) {
     if(playerLives === 0){
       //reset();
       $("#loseModal").modal("show");
-      modalText("factsLose","wikiLose");
+      modalText("lFlagImg","lmName", "lmRegion", "lmCapital", "lmPop", "lmFacts", "lWiki");
     }
     populate();
     if((blankedWord.join("")) === (splitWord.join(""))){
       console.log("you winner");
       $("#winModal").modal("show");
-      modalText("facts","wiki");
+      modalText("flagImg","mName", "mRegion", "mCapital", "mPop", "mfacts", "wiki");
       levelUp();
     }
   }
@@ -128,9 +105,14 @@ var populate = function(){
 };
 populate();
 
-var modalText = function(x,y){
-  document.getElementById(x).innerHTML = "Click the Wikipedia button to learn more interesting facts about "+ splitWord.join("").toUpperCase() + "!";
-  document.getElementById(y).href = "https://en.wikipedia.org/wiki/"+splitWord.join("");
+var modalText = function(a,b,c,d,e,f,g){
+  document.getElementById(a).src = "img/flags/"+wordPool[level].code + ".svg";
+  document.getElementById(b).innerHTML = splitWord.join("").toUpperCase();
+  document.getElementById(c).textContent = "Region: " + wordPool[level].region;
+  document.getElementById(d).textContent = "Capital: " + wordPool[level].capital;
+  document.getElementById(e).textContent = "Population: " + wordPool[level].popu;
+  document.getElementById(f).innerHTML = "Click the Wikipedia button to learn more interesting facts about "+ splitWord.join("").toUpperCase() + "!";
+  document.getElementById(g).href = "https://en.wikipedia.org/wiki/"+splitWord.join("");
 };
 
 var levelUp = function(){

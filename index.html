@@ -60,9 +60,27 @@
           <div class="modal-header">
             <h5 class="modal-title">Ding! Level Up</h5>
           </div>
-          <div class="modal-body">
-            <p id="facts"></p>
-            <a id="wiki" href="" target="_blank"><button type="button" class="btn btn-info">Wikipedia</button></a>
+          <div class="container">
+            <div class="modal-body clearfix">
+              <div class="row">
+                <div class="col-sm-6">
+                  <img id="flagImg" src="#" alt="flag">
+                </div>
+                <div class="col-sm-6">
+                  <h3 id="mName"></h3>
+                  <p id="mRegion"></p>
+                  <p id="mCapital"></p>
+                  <p id="mPop"></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <hr>
+                  <p id="mfacts"></p>
+                  <a id="wiki" href="" target="_blank"><button type="button" class="btn btn-info">Wikipedia</button></a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-info" data-dismiss="modal">Next Round</button>
@@ -76,15 +94,35 @@
           <div class="modal-header">
             <h5 class="modal-title">Sorry you lose!</h5>
           </div>
-          <div class="modal-body">
-            Better luck next time!
-            <p id="factsLose"></p>
-            <a id="wikiLose" href="" target="_blank"><button type="button" class="btn btn-info">Wikipedia</button></a>
-            <button type="button" class="btn btn-info float-right" data-dismiss="modal" onclick="reset()">Reset</button>
+          <div class="container">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <img id="lFlagImg" src="#" alt="flag">
+                </div>
+                <div class="col-sm-6">
+                  <h3 id="lmName"></h3>
+                  <p id="lmRegion"></p>
+                  <p id="lmCapital"></p>
+                  <p id="lmPop"></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <hr>
+                  <p id="lmFacts"></p>
+                  <a id="lWiki" href="" target="_blank"><button type="button" class="btn btn-info">Wikipedia</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal" onclick="reset()">Reset</button>
           </div>
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="js/model.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
   </body>
 </html>
