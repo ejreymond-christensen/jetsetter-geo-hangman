@@ -2,8 +2,21 @@ body{
   background-image: url(../map.svg);
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: 'Lato', sans-serif;
 }
-
+.container{
+  opacity: 0.9;
+}
+.card-header{
+  background-color: #25A2B7;
+}
+h1{
+  color: #fff;
+  font-family: 'Lobster', cursive;
+}
+.card-subtitle, h3{
+  font-family: 'Lobster', cursive;
+}
 .guessBox{
   min-height: 50px;
 }
@@ -15,7 +28,7 @@ body{
 }
 
 .styleCard{
-  margin-top: 15%;
+  margin-top: 7%;
   margin-bottom: auto;
 }
 .levelFloat{
