@@ -104,7 +104,7 @@ populate();
 
 //This function populates the modal on a win or loss.
 var modalText = function(a,b,c,d,e,f,g,h){
-  document.getElementById(a).src = "img/flags/"+wordPool[level].code + ".svg";
+  document.getElementById(a).src = "assets/img/flags/"+wordPool[level].code.toLowerCase() + ".svg";
   document.getElementById(b).innerHTML = splitWord.join("").toUpperCase();
   document.getElementById(c).textContent = "Region: " + wordPool[level].region;
   document.getElementById(d).textContent = "Capital: " + wordPool[level].capital;
