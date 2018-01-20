@@ -98,7 +98,7 @@ var populate = function(){
   document.getElementById("level").textContent = "Level: " + level;
   document.getElementById("word").innerHTML = blankedWord.join("&nbsp");
   document.getElementById("lives").textContent = "Lives: " + playerLives;
-  document.getElementById("hint").textContent = "Hint: It is in the region of " + wordPool[level].region;
+  document.getElementById("hint").textContent = "Hint: A country in " + wordPool[level].region;
 };
 populate();
 
