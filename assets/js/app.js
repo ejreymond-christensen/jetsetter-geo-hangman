@@ -78,8 +78,9 @@ document.onkeyup = function(event) {
     }
     // this statement determines if the player has lost and creates the lost modal.
     if(playerLives === 0){
-      $("#loseModal").modal("show");
-      modalText("lFlagImg","lmName", "lmRegion", "lmCapital", "lmPop", "lmFacts", "lWiki", "lmArea");
+      $("#winModal").modal("show");
+      modalText("flagImg","mName", "mRegion", "mCapital", "mPop", "mfacts", "wiki", "mArea");
+      modalLoseText("modalTitle", "modalButton");
     }
     populate();
     // this statement determines if the player has won and creates the win modal.
@@ -87,6 +88,7 @@ document.onkeyup = function(event) {
       //console.log("you winner");
       $("#winModal").modal("show");
       modalText("flagImg","mName", "mRegion", "mCapital", "mPop", "mfacts", "wiki", "mArea");
+      modalWinText("modalTitle", "modalButton");
       //levelUp();
     }
   }
@@ -114,6 +116,20 @@ var modalText = function(a,b,c,d,e,f,g,h){
   document.getElementById(h).textContent = "Area: " + wordPool[level].area +" km²";
 };
 
+//This function populates the modal with win specific info.
+var modalWinText = function (a,b){
+  document.getElementById(a).innerHTML = "Ding! Level Up. You are a real Globe-Trotter!";
+  document.getElementById(b).innerHTML = "Next Round";
+  document.getElementById(b).setAttribute( "onClick", "levelUp()" );
+};
+
+//This function populates the modal with lose specific info.
+var modalLoseText = function(a,b){
+  document.getElementById(a).innerHTML = "Sorry you lose. Pack your bags and fly again.";
+  document.getElementById(b).innerHTML = "Replay";
+  document.getElementById(b).setAttribute( "onClick", "reset()" );
+};
+
 //On a win this this function resets the match.
 var levelUp = function(){
   level++;
@@ -126,9 +142,9 @@ var levelUp = function(){
   blankify(splitWord);
   populate();
 
-   // console.log(wordPool);
-   // console.log(splitWord);
-   // console.log(blankedWord);
+  // console.log(wordPool);
+  // console.log(splitWord);
+  // console.log(blankedWord);
 };
 
 //On a loss this function resets the match, level and scrambles the array, so the whole game is reset.

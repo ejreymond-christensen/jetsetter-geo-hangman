@@ -56,12 +56,12 @@
         </div>
       </div>
     </div>
-    <!-- Win Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="winModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Ding! Level Up. You are a real Jet-Setter!</h5>
+            <h5 class="modal-title" id="modalTitle">Ding! Level Up. You are a real Globe-Trotter!</h5>
           </div>
           <div class="container">
             <div class="modal-body clearfix">
@@ -87,43 +87,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-dismiss="modal" onclick="levelUp()">Next Round</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Lose Modal -->
-    <div class="modal fade" id="loseModal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Sorry you lose!</h5>
-          </div>
-          <div class="container">
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-sm-6">
-                  <img id="lFlagImg" src="#" alt="flag">
-                </div>
-                <div class="col-sm-6">
-                  <h3 id="lmName"></h3>
-                  <p id="lmRegion"></p>
-                  <p id="lmCapital"></p>
-                  <p id="lmPop"></p>
-                  <p id="lmArea"></p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <hr>
-                  <p id="lmFacts"></p>
-                  <a class="btn btn-info" id="lWiki" href="" target="_blank">Wikipedia</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-dismiss="modal" onclick="reset()">Reset</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal" onclick="levelUp()" id="modalButton">Next Round</button>
           </div>
         </div>
       </div>
