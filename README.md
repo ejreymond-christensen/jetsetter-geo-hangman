@@ -1,4 +1,4 @@
-# ut-hangman-game
+# jetsetter-geo-hangman
 Hangman game using javaScript
 
 
@@ -14,4 +14,4 @@ Play to see if your a real _**Jet-Setter**_.
 
 ## How to run the program
 
-You can simply go to https://ejreymond-christensen.github.io/ut-hangman-game/ . Or you can go to ut-hangman-game repo and download the repo. Simply open `index.html` in your favorite browser and start playing.
+You can simply go to https://ejreymond-christensen.github.io/jetsetter-geo-hangman/. Or you can go to `jetsetter-geo-hangman` repo and download the repo. Simply open `index.html` in your favorite browser and start playing.
