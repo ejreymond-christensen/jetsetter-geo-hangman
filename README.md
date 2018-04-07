@@ -1,4 +1,4 @@
-# jetsetter-geo-hangman
+# Jetsetter-Geo-Hangman
 Hangman game using javaScript
 
 
